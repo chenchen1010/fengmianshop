@@ -46,6 +46,6 @@ async function getQRCode() {
 }
 
 const videoUrls = [
-    'assets/videos/video1.mp4',
+    './assets/videos/video1.mp4',
     // ... 其他视频路径
 ]; 
