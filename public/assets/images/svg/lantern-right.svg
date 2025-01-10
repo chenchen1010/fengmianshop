@@ -1,0 +1,16 @@
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="lanternGradient" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff4d4d"/>
+            <stop offset="100%" style="stop-color:#ff1a1a"/>
+        </linearGradient>
+    </defs>
+    <g transform="translate(50,30) scale(-1,1)">
+        <path d="M40 0L60 0C60 0 65 10 50 10C35 10 40 0 40 0Z" fill="#d4af37"/>
+        <path d="M30 10C30 10 20 40 20 100C20 160 80 160 80 100C80 40 70 10 70 10C70 10 65 20 50 20C35 20 30 10 30 10Z" fill="url(#lanternGradient)"/>
+        <path d="M35 40C35 40 45 45 50 45C55 45 65 40 65 40" stroke="#ffd700" stroke-width="2" fill="none"/>
+        <path d="M35 60C35 60 45 65 50 65C55 65 65 60 65 60" stroke="#ffd700" stroke-width="2" fill="none"/>
+        <path d="M20 100C20 100 35 110 50 110C65 110 80 100 80 100" stroke="#d4af37" stroke-width="3" fill="none"/>
+        <path d="M50 110L45 130M50 110L50 135M50 110L55 130" stroke="#d4af37" stroke-width="2"/>
+    </g>
+</svg>
