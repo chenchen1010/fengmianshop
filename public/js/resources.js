@@ -43,4 +43,9 @@ async function getQRCode() {
         console.error('获取二维码图片失败:', error);
         return null;
     }
-} 
+}
+
+const videoUrls = [
+    'assets/videos/video1.mp4',
+    // ... 其他视频路径
+]; 

@@ -24,7 +24,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    background: var(--background-color) url('/assets/images/pattern.png') repeat;
+    background: var(--background-color) url('../assets/images/pattern.png') repeat;
     position: relative;
     min-height: 100vh;
     color: var(--text-color);
