@@ -1,0 +1,373 @@
+:root {
+    /* 苹果风格配色 */
+    --primary-color: #0066CC;
+    --secondary-color: #147CE5;
+    --background-color: #F5F5F7;
+    --text-color: #1D1D1F;
+    --secondary-text: #86868B;
+    --card-background: #FFFFFF;
+    --nav-blur-background: rgba(255, 255, 255, 0.72);
+    --spacing-small: 12px;
+    --spacing: 24px;
+    --spacing-large: 48px;
+    --border-radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+}
+
+/* 导航栏样式 */
+.nav-bar {
+    background: var(--nav-blur-background);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: var(--spacing) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-bar h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.nav-menu a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: var(--spacing);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-color);
+}
+
+/* 热门轮播区域样式 */
+.section-hot {
+    padding: var(--spacing-large) 0;
+}
+
+.hot-swiper {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin-top: var(--spacing);
+    box-shadow: var(--shadow);
+}
+
+.swiper-slide {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.swiper-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+.sales-count {
+    position: absolute;
+    bottom: var(--spacing);
+    right: var(--spacing);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* 标题样式 */
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 免费序列号区域样式 */
+.section-free {
+    background: var(--card-background);
+    padding: var(--spacing-large) 0;
+    margin: var(--spacing) 0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.free-notice {
+    text-align: center;
+    color: var(--secondary-text);
+    margin-bottom: var(--spacing);
+    font-size: 0.95rem;
+}
+
+.free-codes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing);
+    padding: var(--spacing);
+}
+
+/* 主题分类区域样式 */
+.theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--spacing);
+    margin-top: var(--spacing);
+}
+
+.theme-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.theme-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* 用户评价区域样式 */
+.section-reviews {
+    background: var(--card-background);
+    padding: var(--spacing-large) 0;
+    margin: var(--spacing) 0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing);
+    margin-top: var(--spacing);
+}
+
+.review-card {
+    background: var(--background-color);
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+}
+
+/* 公众号引导区域样式 */
+.section-qrcode {
+    text-align: center;
+    padding: var(--spacing-large) 0;
+}
+
+.qrcode-wrapper {
+    margin-top: var(--spacing);
+    background: var(--card-background);
+    display: inline-block;
+    padding: var(--spacing);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.qrcode-wrapper img {
+    width: 200px;
+    height: 200px;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-small);
+}
+
+.qrcode-wrapper p {
+    color: var(--secondary-text);
+    font-size: 0.95rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    :root {
+        --spacing: 16px;
+        --spacing-large: 32px;
+    }
+
+    .nav-bar h1 {
+        font-size: 1.25rem;
+    }
+
+    .nav-menu a {
+        margin-left: var(--spacing-small);
+        font-size: 0.875rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-hot,
+.section-free,
+.section-theme,
+.section-reviews,
+.section-qrcode {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* 视频容器样式 */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* 视频标题样式 */
+.video-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 3;
+}
+
+/* 销售数据样式 */
+.sales-count {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 3;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Swiper 容器样式 */
+.hot-swiper {
+    height: 500px;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.swiper-slide {
+    position: relative;
+    height: 100%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 添加加载动画 */
+.video-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 4px solid var(--primary-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 视频加载完成后隐藏加载动画 */
+.video-container.loaded::before {
+    display: none;
+}
+
+/* 视频错误状态样式 */
+.video-error {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 4px;
+    z-index: 3;
+}
+
+.video-container.error .video-error {
+    display: block;
+}
+
+.video-container.error::before {
+    display: none;
+}

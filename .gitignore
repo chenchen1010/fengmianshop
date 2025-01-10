@@ -1,0 +1,11 @@
+# Node
+node_modules/
+
+# Mac
+.DS_Store
+
+# 媒体文件
+public/assets/videos/*
+public/assets/images/*
+!public/assets/videos/.gitkeep
+!public/assets/images/.gitkeep 
