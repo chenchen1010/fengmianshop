@@ -1,37 +1,36 @@
-// 获取视频文件列表
+// 默认视频数据，使用测试视频链接
+const defaultVideos = [
+    {
+        path: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+        title: '2024春节红包封面',
+        sales: '已售 12,345'
+    },
+    {
+        path: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+        title: '新年快乐红包封面',
+        sales: '已售 8,976'
+    },
+    {
+        path: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+        title: '2024福兔贺岁',
+        sales: '已售 6,789'
+    }
+];
+
+// 修改视频获取逻辑
 async function scanVideoFiles() {
     try {
-        console.log('开始扫描视频文件');
-        const response = await fetch('/api/scan-videos');
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const videos = await response.json();
-        console.log('获取到的视频列表:', videos);
-        
-        // 验证视频文件是否可访问
-        const validVideos = [];
-        for (const video of videos) {
-            try {
-                const testResponse = await fetch(video.path, { method: 'HEAD' });
-                console.log(`视频文件 ${video.name} 状态:`, testResponse.status);
-                if (testResponse.ok) {
-                    validVideos.push(video);
-                }
-            } catch (error) {
-                console.error(`视频文件 ${video.name} 访问失败:`, error);
-            }
-        }
-        
-        console.log('有效的视频列表:', validVideos);
-        return validVideos;
+        console.log('开始加载视频列表');
+        // 直接返回默认视频列表
+        return defaultVideos;
     } catch (error) {
         console.error('获取视频文件失败:', error);
-        return [];
+        return defaultVideos;
     }
 }
+
+// 将函数添加到全局作用域
+window.scanVideoFiles = scanVideoFiles;
 
 // 获取二维码图片
 async function getQRCode() {
