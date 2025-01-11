@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "微信红包封面商城",
   "scripts": {
-    "start": "serve public"
+    "start": "serve public",
+    "vercel-build": "cp -r public/* ."
   },
   "dependencies": {
     "serve": "^14.0.0"
