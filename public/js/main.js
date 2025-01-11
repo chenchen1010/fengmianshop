@@ -189,10 +189,24 @@ function renderHotCovers() {
 function handleVideoPlayback() {
     const videos = document.querySelectorAll('.swiper-slide video');
     videos.forEach(video => {
-        video.addEventListener('loadeddata', () => {
-            video.play().catch(error => {
-                console.log('视频加载后播放失败:', error);
-            });
+        // 设置视频属性
+        video.controls = true;
+        video.preload = 'metadata'; // 只预加载元数据
+        video.playsInline = true;
+        
+        const container = video.closest('.video-container');
+        
+        // 视频可以播放时
+        video.addEventListener('canplay', () => {
+            if (container) {
+                container.classList.add('loaded');
+            }
+            // 只有当前显示的视频才自动播放
+            if (video.closest('.swiper-slide-active')) {
+                video.play().catch(error => {
+                    console.log('视频播放失败:', error);
+                });
+            }
         });
     });
 }
@@ -312,17 +326,52 @@ async function initializeResources() {
         // 渲染热门封面
         renderHotCovers();
         
-        // 获取二维码图片
-        qrcodePath = await getQRCode();
-        if (qrcodePath) {
-            const qrcodeImg = document.querySelector('.qrcode-wrapper img');
-            if (qrcodeImg) {
-                qrcodeImg.src = qrcodePath;
-            }
-        }
-
         // 渲染免费序列号
-        renderFreeSerialNumbers();
+        const freeSerialNumbers = getFreeSerialNumbers();
+        console.log('免费序列号数据:', freeSerialNumbers); // 添加调试日志
+        
+        const freeCodesContainer = document.querySelector('.free-codes');
+        if (freeCodesContainer && freeSerialNumbers.length > 0) {
+            console.log('找到容器，开始渲染序列号'); // 添加调试日志
+            freeCodesContainer.innerHTML = freeSerialNumbers.map(serial => `
+                <div class="serial-card">
+                    <div class="serial-header">
+                        <h3>${serial.title}</h3>
+                        <span class="expire-date">有效期至：${serial.expireDate}</span>
+                    </div>
+                    <div class="serial-content">
+                        <p class="description">${serial.description}</p>
+                        <div class="code-wrapper">
+                            <code class="serial-code">${serial.code}</code>
+                            <button class="copy-btn" data-code="${serial.code}">
+                                <span class="copy-text">复制</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // 添加复制功能
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const code = btn.dataset.code;
+                    try {
+                        await navigator.clipboard.writeText(code);
+                        const copyText = btn.querySelector('.copy-text');
+                        copyText.textContent = '已复制';
+                        btn.classList.add('copied');
+                        setTimeout(() => {
+                            copyText.textContent = '复制';
+                            btn.classList.remove('copied');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('复制失败:', err);
+                    }
+                });
+            });
+        } else {
+            console.error('找不到容器或序列号数据为空'); // 添加错误日志
+        }
 
     } catch (error) {
         console.error('初始化资源失败:', error);

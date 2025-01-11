@@ -24,7 +24,9 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    background: var(--background-color) url('./assets/images/pattern.png') repeat;
+    background: var(--background-color);
+    background-image: radial-gradient(circle at 1px 1px, rgba(250, 81, 81, 0.1) 1px, transparent 0);
+    background-size: 20px 20px;
     position: relative;
     min-height: 100vh;
     color: var(--text-color);
@@ -150,25 +152,103 @@ h2::after {
 
 /* 免费序列号区域样式 */
 .section-free {
-    background: var(--card-background);
     padding: var(--spacing-large) 0;
-    margin: var(--spacing) 0;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
 }
 
 .free-notice {
     text-align: center;
+    margin-bottom: var(--spacing-large);
     color: var(--secondary-text);
-    margin-bottom: var(--spacing);
-    font-size: 0.95rem;
 }
 
 .free-codes {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing);
+    padding: 0 var(--spacing);
+}
+
+.serial-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
     padding: var(--spacing);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(250, 81, 81, 0.1);
+}
+
+.serial-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(250, 81, 81, 0.15);
+}
+
+.serial-header {
+    margin-bottom: var(--spacing);
+    padding-bottom: var(--spacing-small);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.serial-header h3 {
+    color: var(--primary-color);
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+}
+
+.expire-date {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+}
+
+.description {
+    color: var(--text-color);
+    margin-bottom: var(--spacing);
+    font-size: 0.95rem;
+}
+
+.code-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    background: rgba(250, 81, 81, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.serial-code {
+    font-family: monospace;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    flex: 1;
+}
+
+.copy-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: var(--primary-color-dark);
+}
+
+.copy-btn.copied {
+    background: var(--success-color);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .free-codes {
+        grid-template-columns: 1fr;
+    }
+    
+    .serial-card {
+        margin: 0 var(--spacing-small);
+    }
 }
 
 /* 用户评价区域样式 */
@@ -202,27 +282,74 @@ h2::after {
 .section-qrcode {
     text-align: center;
     padding: var(--spacing-large) 0;
+    background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+}
+
+.qrcode-container {
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--spacing-large) * 1.5);
+    margin-top: var(--spacing-large);
+    padding: 0 var(--spacing);
 }
 
 .qrcode-wrapper {
-    margin-top: var(--spacing);
     background: var(--card-background);
-    display: inline-block;
-    padding: var(--spacing);
+    padding: var(--spacing-large);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    flex: 0 1 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qrcode-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(250, 81, 81, 0.15);
 }
 
 .qrcode-wrapper img {
     width: 200px;
     height: 200px;
     border-radius: var(--border-radius);
-    margin-bottom: var(--spacing-small);
+    object-fit: contain;
+    margin-bottom: var(--spacing);
 }
 
 .qrcode-wrapper p {
-    color: var(--secondary-text);
-    font-size: 0.95rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    margin-bottom: 4px;
+    padding: 0 var(--spacing-small);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .qrcode-container {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-large);
+    }
+    
+    .qrcode-wrapper {
+        width: 100%;
+        max-width: 280px;
+        padding: var(--spacing);
+    }
+    
+    .qrcode-wrapper img {
+        width: 180px;
+        height: 180px;
+        object-fit: contain;
+    }
+    
+    .qrcode-wrapper p {
+        font-size: 0.95rem;
+    }
 }
 
 /* 响应式设计 */
@@ -603,96 +730,6 @@ h2::after {
         font-size: 0.875rem;
         line-height: 20px;
         padding: 6px 12px;
-    }
-}
-
-/* 序列号卡片样式 */
-.serial-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: var(--border-radius);
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(250, 81, 81, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.serial-card:hover {
-    box-shadow: 0 0 20px rgba(250, 81, 81, 0.2);
-    transform: translateY(-2px);
-}
-
-.serial-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-}
-
-.serial-header h3 {
-    margin: 0;
-    color: var(--primary-color);
-    font-size: 1.1rem;
-}
-
-.expire-date {
-    font-size: 0.875rem;
-    color: var(--secondary-text);
-}
-
-.description {
-    color: var(--text-color);
-    margin: 8px 0;
-    font-size: 0.95rem;
-}
-
-.code-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--background-color);
-    padding: 12px;
-    border-radius: var(--border-radius);
-    margin-top: 12px;
-}
-
-.serial-code {
-    font-family: monospace;
-    font-size: 1rem;
-    color: var(--primary-color);
-    flex: 1;
-}
-
-.copy-btn {
-    background: linear-gradient(135deg, var(--wx-red) 0%, var(--wx-red-dark) 100%);
-    border: none;
-    padding: 8px 20px;
-    color: white;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.copy-btn:hover {
-    background: var(--primary-color-dark);
-}
-
-.copy-btn.copied {
-    background: var(--success-color);
-}
-
-/* 移动端适配 */
-@media (max-width: 768px) {
-    .serial-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
-
-    .code-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .serial-code {
-        word-break: break-all;
     }
 }
 
