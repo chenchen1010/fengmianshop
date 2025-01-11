@@ -1,18 +1,11 @@
 {
-  "name": "wechat-cover-shop",
+  "name": "hongbao-cover",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "微信红包封面商城",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "serve public"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "express": "^4.21.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.9"
+    "serve": "^14.0.0"
   }
 }
