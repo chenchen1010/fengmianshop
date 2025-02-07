@@ -8,8 +8,12 @@
   ],
   "routes": [
     {
+      "src": "/WW_verify_DXZBuhxsnQuflEFE.txt",
+      "dest": "/WW_verify_DXZBuhxsnQuflEFE.txt"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
   ]
-} 
+}
